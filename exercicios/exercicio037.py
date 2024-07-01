@@ -1,13 +1,23 @@
-# Convertendo número para Binário, Octal, e Hexadecimal
+#Convertendo bases numéricas
 
-import math as m
-print(f'{"CONVERSÃO DE BASES NUMÉRICAS":-^30}')
+numero = int(input('Qual o número? '))
 
-dec = int(input('Digite o número -> '))
-quociente = dec
-bins = []
-while quociente >= 1:
-    bins.append(quociente%2)
-    quociente / 2
+while(True):
+    print("""
+    [1] BINÁRIO
+    [2] HEXADECIMAL
+    [3] OCTAL"""
+    )
 
-print(f'{dec} em binário é {"".join(bins)}')
+    resp = int(input('\nSUA RESPOSTA -> '))
+    if resp <= 3 and resp > 0: break
+
+if resp == 1:
+    numConv = bin(numero).strip("0b")
+    print(f'{numero} em BINÁRIO é: {numConv}')
+elif resp == 2:
+    numConv = hex(numero).strip('0x')
+    print(f'{numero} em HEXADECIMAL é: {numConv}')
+else:
+    numConv = bin(  numero).lstrip('0o')
+    print(f'{numero} em OCTAL é: {numConv}')

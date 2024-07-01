@@ -1,40 +1,25 @@
-# Pode-se formar um triângulo
-# Se sim, qual a categoria?
+# É possível formar um triângulo, de qual tipo?
 
-print(f'{"TRIÂNGULOS":-^20}')
-lado = []
-i = 1
-while i <= 3:
-    lado.append(int(input(f'Tamanho do {i}º lado -> ')))
-    i += 1
+print(f'{"ANALISANDO TRIÂNGULOS":=^25}')
+lados = []
+cont = 0
 
-print(f'\n{"CONCLUSÃO":-^20}')
-i = 0
-while i < 3:
-    print(f'Medida do {i+1}º lado --> {lado[i]}')
-    i += 1
+while cont < 3:
+    lados.append(int(input(f'Qual o tamanho do {cont+1}º lado? ')))
+    cont += 1
 
+print(f'\nMedidas: {lados}', end='\n\n')
 if(
-lado[0] > lado[1] + lado[2] or
-lado[1] > lado[0] + lado[2] or
-lado[2] > lado[0] + lado[1]):
-    print('Não é possível formar um triângulo com essas medidas!')
+lados[0] <= lados[1] + lados[2] and
+lados[1] <= lados[0] + lados[2] and
+lados[2] <= lados[0] + lados[1]): 
+
+    if lados.count(lados[0]) == 3:
+        print('Triâgulo Equilátero')
+    elif lados.count(lados[0]) == 2 or lados.count(lados[1]) == 2:
+        print('Triângulo Isósceles')
+    else:
+        print('Triângulo Escaleno')
 
 else:
-    
-    print('\nÉ possível formar um Triângulo ', end='\033[42m')
-    if(lado.count(lado[0]) == 3):
-        print('Equilatero')
-        
-    elif (
-    lado.count(lado[0]) == 2 or
-    lado.count(lado[1]) == 2):
-        print('Isósceles')
-    
-    else:
-        print('Escaleno')
-
-print('\033[m', end='')
-
-# Alternativa para testar se é Equilatero:
-# if(lado[0] == lado[1] and lado[1] == lado[2]):
+    print('Não é possível formar um triângulo com essas medidas!')

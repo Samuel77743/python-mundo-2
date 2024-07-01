@@ -1,24 +1,26 @@
-# EMPRÉSTIMO BANCÁRIO
-# O Cliente tentará comprar uma casa
+#Programa de Empréstimo para adquirir casa
+# Perguntas: 
+# 1 - Valor da Casa
+# 2 - Salário do cliente
+# 3 - Em quantos ANOS irá pagar
+# DETALHE: SERÁ NEGADO CASO CADA PARCELA CUSTE MAIS QUE 30% DO SALÁRIO
 
-print(f'{"EMPRÉSTIMO BANCÁRIO":-^25}')
+print(f"{'EMPRÉSTIMO':-^20}")
+salarioCliente = float(input("Digite seu salário: R$ "))
+emprestimoTotal = float(input("Qual o valor da casa: R$ "))
+anos = int(input("Em quantas anos pretende pagar: "))
+valorParcela = emprestimoTotal/(anos*12)
+print(f"Totalizando R$ {valorParcela:.2f} por parcela...")
 
-valorCasa = float(input('Qual o valor da casa? R$ '))
-salario = float(input('Qual o salário? R$ '))
-anos = int(input('Em quantos anos será pago o valor -> '))
-# Anos em meses
-meses = anos*12
-prestacao = valorCasa/meses
-
-print(f'\n{"NOTA":-^25}')
-print(f'VALOR DO EMPRÉSTIMO ---> R$ {valorCasa:.2f}')
-print(f'MENSALIDADE ---> {meses} ({anos} anos)')
-print(f'Salário do cliente ---> R${salario:.2f}')
-
-salarioExigido = 30/100 * prestacao
-print(f'\n{"CONCLUSÃO":=^25}')
-
-if salario >= salarioExigido:
-    print('EMPRÉSTIMO {}APROVADO{}'.format('\033[32;4m', '\033[m'))
+if(valorParcela <= 30/100*salarioCliente):
+    print("\033[32m")
+    print("Empréstimo concedido!")
 else:
-    print('EMPRÉSTIMO {}REPROVADO{}'.format('\033[31;4m', '\033[m'))
+    print("\033[31m")
+    print("Empréstimo negado!")
+    print("\033[30;43m")
+    print(
+    f"""Valor mínimo: R$ {30/100*salarioCliente:.2f},
+restou ter R$ {valorParcela-30/100*salarioCliente:.2f} por mês""", end='')  
+
+print("\033[m")

@@ -1,48 +1,44 @@
-# Calculando valor a ser pago
-# Envolvendo vários critérios que ocasionam diferentes descontos
+#Diferentes modos de pagamentos
+valorCompra = float(input('Qual o valor da compra? R$ '))
 
-# A vista dinheiro ou cheque ->  10% de desconto
-# A vista no cartão de débito -> 5% de desconto
-
-# Em até 2x no cartão de crédito -> Preço normal
-# 3x ou mais -> 25% de juros
-
-print(f'{"PAGANDO PRODUTO":-^30}')
-print(f"{'DIGITE O VALOR':-^20}")
-valor = float(input('SUA RESPOSTA -> R$ '))
-
-print(f'\n{"FORMA DE PAGAMENTO":=^30}')
-print('[1] Pagamento a vista no dinheiro')
-print('[2] Pagamento a vista no cheque')
-print('[3] Pagamento por {}CARTÃO{}'.format('\033[4;31m', '\033[m'))
+print(f"""
+{"FORMAS DE PAGAMENTO":=^30}
+[1] À vista no Dinheiro (10% de Desconto)
+[2] À vista no Cartão de Crédito (5% de Desconto)
+[3] Em  2x no Crédito (Sem Desconto)
+[4] A partir de 3x no Crédito \033[31m(20% de Juros)
+\033[m""")
 
 resp = int(input('SUA RESPOSTA -> '))
+print() #Quebra de linha
 
-if resp == 1 or resp == 2:
-    valorFinal = valor - valor * 10/100
+total = None
+if resp == 1:
+    print(f'{"À VISTA NO DINHEIRO":-^30}')
+    desconto = valorCompra*10/100
+    total = valorCompra - desconto
+elif resp == 2:
+    print(f'{"À VISTA NO CARTÃO DE CRÉDITO":-^30}')
+    desconto = valorCompra*5/100
+    total = valorCompra - desconto
 elif resp == 3:
-    print(f'\n{"PAGAMENTO POR CARTÃO":-^30}')
-    print('[1] DÉBITO')
-    print('[2] CRÉDITO')
-    resp = int(input('SUA RESPOSTA -> '))
-
-    if resp == 1:
-        valorFinal = valor - valor * 5/100
-    elif resp == 2:
-        resp = int(input('Será dividido em quantas parcelas? '))
-        if resp <= 2:
-            valorFinal = valor
-        else:
-            valorFinal = valor + valor * 25/100
-            print(f'\033[31m {"JUROS APLICADO":-^25} \033[m')
-            print(f'VALOR DO JUROS ---> {valor + valor * 25/100}')
-        print(f'{"AVISO":-^30}')
-        print(f'VALOR DE CADA PARCELA -> R$ {valorFinal/resp:.2f}')
+    print(f'{"EM 2x NO CARTÃO DE CRÉDITO":-^30}')
+    desconto = 0
+    total = valorCompra
+    print(f'Duas parcelas de {total/2:.2f}')
 else:
-    print('Resposta inválida')
-    exit()
+    while True:
+        print(f'{"A PARTIR DE 3 PARCELAS":-^30}\033[3m')
+        qtdParcelas = int(input('Digite em quantas vezes deseja parcelar -> '))
+        if qtdParcelas < 3:
+            continue
+        juros = valorCompra*20/100
+        total = valorCompra + juros
+        print(f'JUROS: R$ {juros}')
+        print(f'{qtdParcelas} parcelas de R$ {total/qtdParcelas:.2f}\033[m')
+        desconto = 0
+        break
 
-print(f'\n{"CONCLUSÃO":-^30}')
-print(f'Valor Original -------> R$ {valor:.2f}')
-print(f'Valor do Desconto ----> R$ {valor - valorFinal:.2f}')
-print(f'\nVALOR A PAGAR ------> R$ {valorFinal:.2f}')
+print(f'Valor dos Produtos: R$ {valorCompra:.2f}')
+print(f'DESCONTO: R$ {desconto:.2f}')
+print(f'TOTAL A SER PAGO: R$ {total:.2f}')

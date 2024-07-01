@@ -1,23 +1,24 @@
-# Calculando IMC
+print(f'{"CALCULANDO IMC":=^25}')
 
-print(f'{"CALCULANDO IMC":-^20}')
-peso = float(input('Qual o peso? '))
-altura = float(input('Qual a altura(em metros)? '))
+altura = float(input('Qual a sua altura? '))
+peso = float(input('Qual a seu peso(Em KG)? '))
 
+# IMC é o peso divido pela altura elevado a 2
 imc = peso / altura**2
+print(f'SEU IMC: {imc:.2f}')
 
-print(f"\n{'RESULTADO':-^20}")
-print(f'IMC ---> {imc:.2f}')
-print('SITUAÇÃO: ', end='')
-
+print('Sua situação:', end=' ')
 if imc < 18.5:
-    print('{}Abaixo do peso'.format('\033[31;4m'))
+    print('Abaixo do peso')
 elif imc < 25:
-    print('{}Peso ideal'.format('\033[32;4m'))
+    print('Peso ideal')
 elif imc < 30:
-    print('{}Sobrepeso'.format('\033[35;4m'))
+    print('Sobrepeso')
 elif imc < 40:
-    print('{}Obesidade'.format('\033[31;4m'))
+    print('Obesidade')
 else:
-    print('{}Thaís Carla'.format('\033[31;44;4m'))
-print('\033[m', end='')
+    print('Obesidade mórbida')
+    print('\033[31mCUIDADO!\033[m')
+
+
+

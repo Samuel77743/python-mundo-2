@@ -1,33 +1,32 @@
-# PEDRA, PAPEL e TESOURA
-
+#Pedra Papel e Tesoura
 from random import choice
-
-print(f'{"PEDRA, PAPEL E TESOURA":-^30}')
+from time import sleep
 
 escolhas = ['Pedra', 'Papel', 'Tesoura']
+print(f'{"PEDRA, PAPEL & TESOURA":-^30}')
 
+escolhaCPU = choice(escolhas)
 while True:
-    jogador = str(input('SUA RESPOSTA -> ')).capitalize()
-    if not(jogador in escolhas):
-        print('Resposta Inválida! Tente novamente.')
-    else:
-        break
+    escolhaJogador = str(input('Qual a sua escolha? ')).title()
+    if not(escolhaJogador in escolhas):
+        print('Digite uma opção válida')
+        continue
+    break
 
-cpu = choice(escolhas)
+print(f'{"JO":<7}')
+sleep(0.5)
+print(f'{"KEN":^7}')
+sleep(0.5)
+print(f'{"PO":<7}')
 
-print(f'\n{jogador} X {cpu}')
-
-if jogador == cpu:
-    print('{}EMPATE!{}'.format('\033[33m', '\033[m'))
-
-# Vezes que o jogador perde
+print(f'{escolhaJogador} VS. {escolhaCPU}')
+if escolhaJogador == escolhaCPU:
+    print('\033[33mEMPATE\033[m')
 elif(
-(jogador == 'Pedra' and cpu == 'Papel') or
-(jogador == 'Papel' and cpu == 'Tesoura') or
-(jogador == 'Tesoura' and cpu == 'Pedra')):
-    print('{}Jogador Pedeu{}'.format('\033[31m', '\033[m'))
+escolhaJogador == 'Pedra' and escolhaCPU == 'Tesoura' or
+escolhaJogador == 'Tesoura' and escolhaCPU == 'Papel' or
+escolhaJogador == 'Papel' and escolhaCPU == 'Pedra'):
+    print('\033[32mJOGADOR VENCEU!\033[m')
 
 else:
-    print('{}Jogador Venceu! Parabéns{}'.format('\033[32m', '\033[m'))
-
-
+    print('\033[31mJOGADOR PERDEU!\033[m')    

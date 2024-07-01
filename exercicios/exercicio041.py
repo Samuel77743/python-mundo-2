@@ -1,21 +1,18 @@
-# Categoria de Nadador
-# Até 9: Mirim | Até 14: Infantil | Até 19: Júnior | Até 20: Sênior
-# Acima: MASTER
+#CLASSIFICAÇÃO DO ATLETA
+from datetime import date 
+print(f'{"CLASSIFICAÇÃO DE ATLETA":=^30}')
 
-print(f'{"CATEGORIZANDO":-^20}')
+anoNascimento = int(input('Qual o ano de nascimento: '))
+idade =  date.today().year - anoNascimento
 
-idade = int(input('Qual a idade do nadador -> '))
-
-print('Nadador nível ', end='\033[4m')
+print('\nCLASSIFICAÇÃO: ', end='')
 if idade <= 9:
-    print('Mirim')
+    print('MIRIM')
 elif idade <= 14:
-    print('Infantil')
+    print('INFANTIL')
 elif idade <= 19:
-    print('Júnior')
-elif idade <= 20:
-    print('Sênior')
+    print('JÚNIOR')
+elif idade <= 25:
+    print('SÊNIOR')
 else:
-    print('Master')
-
-print('\033[m')
+    print('MASTER')
