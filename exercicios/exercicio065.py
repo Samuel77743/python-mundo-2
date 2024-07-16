@@ -3,25 +3,19 @@
 cont = acum = 0
 num = maior = menor = None
 resp = 'S'
-while resp != 'N':
-
-    if cont == 0:
-        acum += int(input('Digite um número -> '))
-        maior = menor = acum
-        cont += 1
+while resp == 'S':
+    num = int(input('Digite um número -> '))
+    acum += num
+    cont += 1
+    if cont == 1:
+        maior = menor = num
     else:
-        resp = str(input('Deseja digitar mais um número[S/N] -> ')).upper()[0]
-        while resp not in ['S', 'N']:
-            resp = str(input('Resposta Inválida! Tente novamente: ')).upper()[0]
-        if resp == 'S':
-            num = int(input('Digite um número -> '))
-            acum += num
-            cont += 1
-            if num > maior:
-                maior = num
-                continue
-            if num < menor:
-                menor = num
+        if num > maior:
+            maior = num
+        if num < menor:
+            menor = num
+
+    resp = str(input('Deseja digitar novamente?[S/N] ')).upper().strip()[0]
 
 media = acum / cont
 print(f'\n{"CONCLUSÃO":-^25}')
